@@ -53,7 +53,7 @@ clear
 echo
 echo -e "$yellow Now you can use GUI using VNC"
 }
-x86_64()
+x86_64_repo()
 {
 	echo -e "$green repo_url is initializing"
 printf "\ndeb [arch=all,x86_64] https://xeffyr.github.io/termux-x-repository/ termux x-gui" >> $PREFIX/etc/apt/sources.list
