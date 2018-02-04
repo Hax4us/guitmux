@@ -16,7 +16,7 @@ echo -e "$yellow Dependencies Installing ..."
 echo
 echo -e "$red it can take upto 10 minutes (also depend on your net speed"
 apt update -y && apt upgrade -y
-apt install apt-transport-https gnupg wget
+apt install gnupg gnupg2 wget
 wget https://xeffyr.github.io/termux-x-repository/pubkey.gpg
 apt-key add pubkey.gpg
 aarch64_repo()
