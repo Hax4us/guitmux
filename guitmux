@@ -2,12 +2,9 @@
 # Created by Hax4us
 clear
 #colors
-cyan='\033[1;36m'
 green='\033[1;32m'
 red='\033[1;31m'
 yellow='\033[1;33m'
-blue='\033[1;34m'
-purple='\033[1;35m'
 reset='\033[0m'
 echo
 echo -e "$green Please wait ..."
@@ -16,13 +13,12 @@ echo -e "$yellow Dependencies Installing ..."
 echo
 echo -e "$red it can take upto 10 minutes (also depend on your net speed"
 apt update -y && apt upgrade -y
-apt install gnupg gnupg2 wget
-wget https://xeffyr.github.io/termux-x-repository/pubkey.gpg
-apt-key add pubkey.gpg
-aarch64_repo()
+apt install dirmngr gnupg-curl
+repo()
 {
 	echo -e "$green repo_url is initializing ..."
-printf "\ndeb [arch=all,aarch64] https://xeffyr.github.io/termux-x-repository/ termux x-gui" >> $PREFIX/etc/apt/sources.list
+	mkdir -p $PREFIX/etc/apt/sources.list.d
+[ ! -f $PREFIX/etc/apt/sources.list.d/xeffyr.list ] && printf "deb https://termux.xeffyr.ml/ extra main x11" > $PREFIX/etc/apt/sources.list.d/xeffyr.list
 echo -e "$yellow Ok"
 echo
 echo -e "$green Please wait ..."
@@ -31,58 +27,5 @@ apt install tigervnc xterm -y
 clear
 echo -e "$yellow Now you can use GUI using VNC ;)"
 }
-arm_repo()
-{
-	echo -e "$green repo_url is initializing"
-printf "\ndeb [arch=all,arm] https://xeffyr.github.io/termux-x-repository/ termux x-gui" >> $PREFIX/etc/apt/sources.list
-echo -e "$yellow Ok"
+echo -e "$red Now you can exit but dont forget to subscribe my channel https://youtube.com/hax4us $reset"
 echo
-echo -e "$green Please Wait ..."
-apt update -y && apt install tigervnc xterm -y
-echo -e "$yellow Now you can use GUI using VNC"
-}
-i686_repo()
-{
-	echo -e "$green repo_url is initializing"
-	printf "\ndeb [arch=all,i686] https://xeffyr.github.io/termux-x-repository/ termux x-gui" >> $PREFIX/etc/apt/sources.list
-echo -e "$yellow Ok"
-echo
-echo -e "$green Please Wait ..."
-apt update -y && apt install tigervnc xterm -y
-clear
-echo
-echo -e "$yellow Now you can use GUI using VNC"
-}
-x86_64_repo()
-{
-	echo -e "$green repo_url is initializing"
-printf "\ndeb [arch=all,x86_64] https://xeffyr.github.io/termux-x-repository/ termux x-gui" >> $PREFIX/etc/apt/sources.list
-echo -e "$yellow Ok"
-apt update -y && apt install tigervnc xterm -y
-clear
-echo
-echo -e "$yellow Now you can use GUI using VNC"
-}
-arch=`dpkg --print-architecture`
-case "$arch" in
-	aarch64)
-		aarch64_repo
-		;;
-	armhf)
-		arm_repo
-		;;
-	arm)
-		arm_repo
-		;;
-	x86_64)
-		x86_64_repo
-		;;
-	i686)
-		i686_repo
-		;;
-esac
-echo -e "$red Now you can exit but dont forget to subscribe my channel https://youtube.com/hax4us"
-echo
-echo -e "$yellow press ENTER$reset"
-read tmp
-exit
