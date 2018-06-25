@@ -11,9 +11,11 @@ echo -e "$green Please wait ..."
 echo
 echo -e "$yellow Dependencies Installing ..."
 echo
-echo -e "$red it can take upto 10 minutes (also depend on your net speed"
+echo -e "$red it can take upto 10 minutes (also depend on your net speed)"
 apt update -y && apt upgrade -y
-apt install dirmngr gnupg-curl
+apt install dirmngr gnupg-curl -y
+apt-key adv --keyserver pool.sks-keyservers.net --recv 9D6D488416B493F0
+
 repo()
 {
 	echo -e "$green repo_url is initializing ..."
@@ -27,5 +29,6 @@ apt install tigervnc xterm -y
 clear
 echo -e "$yellow Now you can use GUI using VNC ;)"
 }
+repo
 echo -e "$red Now you can exit but dont forget to subscribe my channel https://youtube.com/hax4us $reset"
 echo
