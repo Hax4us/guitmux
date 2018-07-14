@@ -25,7 +25,7 @@ echo -e "$yellow Ok"
 echo
 echo -e "$green Please wait ..."
 apt update -y
-apt install tigervnc xterm -y
+apt install tigervnc aterm -y
 clear
 echo -e "$yellow Now you can use GUI using VNC ;)"
 }
